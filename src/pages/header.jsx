@@ -3,10 +3,12 @@ import mylogo1 from "../images/mylogo1.png";
 import "./header.scss";
 import { useNavigate } from "react-router-dom";
 import useDataStore from "./useDataStore";
+import { useUserAuth } from "../context/UserAuthContext";
 
-export default function Header() {
+
+export default function Header(props) {
   const navigate = useNavigate();
-
+  const { logOut } = useUserAuth();
   const [changeLoginStatus, UserState, changeEditStatus, EditState] =
     useDataStore((state) => [
       state.changeLoginStatus,
@@ -14,12 +16,18 @@ export default function Header() {
       state.changeEditStatus,
       state.EditState,
     ]);
-  console.log(EditState);
-  const navigateToLogin = () => {
-    navigate("/");
-    changeLoginStatus(false);
+  const selectedTab = props.selectedTab;
+  const onSelect = props.onSelect;
+  const navigateToLogin = async (event) => {
+    event.preventDefault();
+    try {
+      await logOut().then(() => {
+        navigate("/");
+      });
+    } catch (err) {
+      console.log("Error");
+    }
   };
-
   // if(UserState === false){
   //     navigate('/');
   // }
@@ -30,14 +38,8 @@ export default function Header() {
 
   return (
     <div className="Title">
-      <div className="mylogo">
-        <img src={mylogo1} alt="" height={100} />
-      </div>
-      <div className="heading">
-        <h1>My Profile</h1>
-      </div>
       <div className="buttons">
-        {EditState ? (
+        {/* {EditState ? (
           <button
             className="editprofilebtn"
             onClick={() => updateEditStatus(false)}
@@ -51,10 +53,15 @@ export default function Header() {
           >
             Edit Profile
           </button>
-        )}
-
-        <button className="signoutbtn" onClick={navigateToLogin}>
-          Sign Out
+        )} */}
+        <button className={selectedTab == "MyProfile" ? "buttonlogin is-active" : "buttonlogin not-active"} onClick={() => onSelect("MyProfile")}>
+          Profile
+        </button>
+        <button className={selectedTab == "To-Do" ? "buttonlogin is-active" : "buttonlogin not-active"} onClick={() => onSelect("To-Do")}>
+          To-Do List
+        </button>
+        <button className="buttonlogin" onClick={navigateToLogin}>
+          Log Out
         </button>
       </div>
     </div>

@@ -1,19 +1,27 @@
 .Title {
-    box-sizing: border-box;
-    width: 100%;
+    height: 100%;
     display: flex;
-    flex-direction: row;
-    padding: 1em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
     // margin-bottom: 2em;
-    background-color: #3466AA;
     color: #fff;
-    height: 100px;
-}
-.mylogo{
-    justify-self: flex-start;
-    flex: 1;
-    align-self: center;
-    padding-top: 5px;
+    margin-bottom: 1rem;
+    // .buttons{
+    //     .buttonlogin{
+    //         border-color: rgb(8,11,50);
+    //         color: black;
+    //         &:hover{
+    //             background-color: rgb(8,11,50);
+    //             color: white;
+    //           }
+    //           &.is-active{
+    //             background-color: rgb(8,11,50);
+    //             color: white;
+    //           }
+    //     }
+    // }
 }
 .heading{
     justify-content: flex-end;
@@ -24,28 +32,68 @@
 }
 .buttons{
     flex: 2;
-    justify-content: flex-end;
+    justify-content: center;
     display: flex;
+    flex-direction: column;
     align-self: center;
+    align-items: flex-end;
+    width: 100%;
 }
 .editprofilebtn{
-    background-color: #474545;
+    background-color: transparent;
     color: white;
-    padding: 5px 5px;
-    margin: 10px 20px;
     margin-left: 0px;
     border-radius: 25px;
-    border: none;
+    border: 2px solid white;
     cursor: pointer;
-    width: 150px;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    >*{
+        margin-left: 4.5px;
+        margin-top: 2.5px;
+    }
+}
+.editbtn-container{
+    width: fit-content;
+    height: fit-content;
+    display: block;
+    height: 5vh;
+    width: 100%;
+    flex: 1;
 }
 .signoutbtn{
-    background-color: #474545;
+    background-color: transparent;
     color: white;
-    padding: 5px 5px;
-    margin: 10px 0px;
-    border-radius: 25px;
+    margin-right: 0.125rem;
+    border-radius: 3px;
     border: none;
     cursor: pointer;
-    width: 150px;
+    width: fit-content;
 }
+
+
+
+
+
+
+
+
+
+
+
+//here
+
+// .sidebar-mask{
+//     flex: 5;
+//     background-color: transparent;
+//   }
+//   .sidebar-group{
+//     height: 100vh;
+//     width: 100vw;
+//     background-color: transparent;
+//     position: fixed;
+//     display: flex;
+//   }
