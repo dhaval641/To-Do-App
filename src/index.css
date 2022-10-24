@@ -1,12 +1,72 @@
 @import "./pages/loginpage.scss";
+@import "./pages/TodoList.scss";
 
 body {
   margin: 0;
+  padding: 0 !important;
+  background-color: whitesmoke;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(
+    rgb(81,40,106),
+    rgb(57,36,101),
+    rgb(41,28,86),
+    rgb(14,18,65),
+    rgb(8,11,50)
+  );
+}
+.star{
+  z-index: -1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 1px;
+  width: 1px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: -35vw -44vh 2px 1px #fff, 44vw -3vh 0px 0px #fff, -12vw -48vh 1px 1px #fff, -34vw 38vh 3px 1px #fff, -42vw -15vh 2px 1px #fff, -11vw 11vh 0px 1px #fff, 41vw -38vh 0px 1px #fff, -6vw 45vh 3px 1px #fff, 23vw -36vh 3px 2px #fff, 24vw 34vh 2px 1px #fff;
+  animation: zoom 5s linear infinite;
+}
+
+.star1{
+  z-index: -1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 1px;
+  width: 1px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: -13vw -23vh 1px 1px #fff, 39vw -8vh 0px 0px #fff, 12vw -44vh 1px 1px #fff, -45vw 27vh 3px 1px #fff, -37vw 8vh 4px 2px #fff, 11vw -3vh 0px 1px #fff, -13vw 32vh 3px 1px #fff, 35vw -28vh 3px 2px #fff, 39vw 27vh 2px 1px #fff;
+  animation: zoom 7s linear infinite;
+}
+
+.star2{
+  z-index: -1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 1px;
+  width: 1px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 8vw -29vh 0px 0px #fff, -43vw -26vh 1px 1px #fff, 35vw 48vh 3px 1px #fff, 11vw -19vh 2px 1px #fff, 29vw 9vh 0px 1px #fff, 27vw -10vh 0px 1px #fff, -21vw -34vh 1px 1px #fff, 28vw 20vh 2px 0.5px #fff;
+  animation: zoom 2s linear infinite;
+}
+
+@keyframes zoom {
+  /* 0%, 100%{
+    box-shadow: -24vw -44vh 2px 2px #fff, 43vw -4vh 0px 0px #fff, -12vw -48vh 1px 1px #fff, -38vw 38vh 3px 1px #fff, -42vw -15vh 4px 2px #fff, 13vw 15vh 3px 1px #fff, 42vw 6vh 3px 2px #fff, -11vw 11vh 0px 1px #fff, 40vw -38vh 0px 1px #fff, -16vw 45vh 3px 1px #fff, 21vw -36vh 3px 2px #fff, 24vw 34vh 2px 1px #fff;
+  }
+  50%{
+    box-shadow: -1vw -4vh 2px 2px #fff, 9vw -29vh 0px 0px #fff, 5vw -20vh 1px 1px #fff, -6vw 45vh 3px 1px #fff, -23vw -34vh 4px 2px #fff, 10vw 43vh 3px 1px #fff, 10vw -19vh 3px 2px #fff, 31vw 9vh 0px 1px #fff, 29vw -19vh 0px 1px #fff, -18vw -29vh 3px 1px #fff, 31vw -40vh 3px 2px #fff, 28vw 20vh 2px 1px #fff;
+  } */
+  50%{
+    opacity: 0;
+  }
 }
 
 code {
