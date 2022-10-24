@@ -3,23 +3,47 @@ import "./loginpage.scss";
 import mylogo from "../images/mylogo.png";
 import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "../context/UserAuthContext";
+import { updateProfile, getAuth } from "firebase/auth";
+import { ref, getDatabase, child, push, update, set } from "firebase/database";
+import { database } from "../firebase";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { signUp } = useUserAuth();
   const navigate = useNavigate();
+  const defaultPicture = "https://picsum.photos/200/300";
+
+  function writeNewPost(uid, username, email, picture) {
+    const db = getDatabase();   
+  
+    return set(ref(db, "User/"+uid), {
+      UserName: username,
+      email: email,
+      bio: null,
+      phoneNumber: null,
+      ProfilePicture: picture,
+    });
+  }
 
   const onRegister = async (event) => {
     event.preventDefault();
+    const userName = (new FormData(event.target).get("userName")); 
+    console.log(userName);
     try {
-      await signUp(email, password);
-      navigate("/profilepage");
+      await signUp(email, password).then(() => {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        updateProfile(user, {
+          displayName: userName
+        }).then(() => {
+          writeNewPost(user.uid, user.displayName, user.email, defaultPicture)
+          navigate("/profilepage");
+        }).catch((error) => {
+          console.log(error);
+        });
 
-      //   const pwd = new FormData(event.target).get("pwd");
-      //   const confpwd = new FormData(event.target).get("confpwd");
-      //   if (confpwd === pwd) {
-      //   }
+      });
     } catch (err) {
       console.log("Error");
     }
@@ -35,17 +59,11 @@ export default function Register() {
         <form className="register-form" onSubmit={onRegister}>
           <div className="input-group2">
             <input
-              formcontrolname="fname"
+              formcontrolname="userName"
+              name="userName"
               type="text"
-              className="fname"
-              placeholder="First Name"
-              required
-            />
-            <input
-              formcontrolname="lname"
-              type="text"
-              className="lname"
-              placeholder="Last Name"
+              className="userName"
+              placeholder="User Name"
               required
             />
           </div>
@@ -54,7 +72,7 @@ export default function Register() {
               formcontrolname="email"
               type="email"
               className="form-control"
-              placeholder="Enter Email or Mobile"
+              placeholder="Enter Email"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -97,7 +115,7 @@ export default function Register() {
           </div>
           <div className="row">
             <div>
-              <button className="buttonsignup">Sign Up</button>
+              <button type="submit" className="buttonsignup">Sign Up</button>
             </div>
           </div>
         </form>
